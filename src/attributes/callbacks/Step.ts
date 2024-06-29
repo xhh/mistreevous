@@ -7,11 +7,11 @@ import { Agent } from "../../Agent";
  */
 export default class Step extends Callback {
     /**
-     * @param functionName The name of the agent function to call.
+     * @param func The agent function or name to call.
      * @param args The array of callback argument definitions.
      */
-    constructor(functionName: string, args: any[]) {
-        super("step", args, functionName);
+    constructor(func: string | Function, args: any[]) {
+        super("step", args, func);
     }
 
     /**
@@ -20,12 +20,12 @@ export default class Step extends Callback {
      */
     callAgentFunction = (agent: Agent) => {
         // Attempt to get the invoker for the callback function.
-        const callbackFuncInvoker = Lookup.getFuncInvoker(agent, this.getFunctionName());
+        const callbackFuncInvoker = Lookup.getFuncInvoker(agent, this.getFunction());
 
         // The callback function should be defined.
         if (callbackFuncInvoker === null) {
             throw new Error(
-                `cannot call step function '${this.getFunctionName()}' as is not defined on the agent and has not been registered`
+                `cannot call step function '${this.getFunction()}' as is not defined on the agent and has not been registered`
             );
         }
 

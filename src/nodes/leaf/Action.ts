@@ -26,19 +26,27 @@ type UpdatePromiseResult = {
  * This represents an immediate or ongoing state of behaviour.
  */
 export default class Action extends Leaf {
+    private actionName: string;
+
     /**
      * @param attributes The node attributes.
      * @param options The behaviour tree options.
-     * @param actionName The action name.
+     * @param action The action name or function.
      * @param actionArguments The array of action arguments.
      */
     constructor(
         attributes: Attribute[],
         options: BehaviourTreeOptions,
-        private actionName: string,
+        private action: string | Function,
         public actionArguments: any[]
     ) {
         super("action", attributes, options);
+        
+        if (typeof action === "string") {
+            this.actionName = action;
+        } else {
+            this.actionName = action.name;
+        }
     }
 
     /**
@@ -85,7 +93,7 @@ export default class Action extends Leaf {
         }
 
         // Attempt to get the invoker for the action function.
-        const actionFuncInvoker = Lookup.getFuncInvoker(agent, this.actionName);
+        const actionFuncInvoker = Lookup.getFuncInvoker(agent, this.action);
 
         // The action function should be defined.
         if (actionFuncInvoker === null) {

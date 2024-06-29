@@ -39,10 +39,15 @@ export default class Lookup {
      * If a function with the specified name exists on the agent object then it will
      * be returned, otherwise we will then check the registered functions for a match.
      * @param agent The agent instance that this behaviour tree is modelling behaviour for.
-     * @param name The function name.
+     * @param nameOrFunc The function name.
      * @returns The function invoker for the specified agent and function name.
      */
-    static getFuncInvoker(agent: Agent, name: string): InvokerFunction | null {
+    static getFuncInvoker(agent: Agent, nameOrFunc: string | Function): InvokerFunction | null {
+        if (typeof nameOrFunc === 'function') {
+            return (args: any[]) => nameOrFunc.apply(agent, args);
+        }
+
+        const name = nameOrFunc;
         // Check whether the agent contains the specified function.
         const agentFunction = agent[name];
         if (agentFunction && typeof agentFunction === "function") {

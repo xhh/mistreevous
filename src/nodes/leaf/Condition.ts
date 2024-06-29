@@ -11,19 +11,27 @@ import Attribute from "../../attributes/Attribute";
  * This will succeed or fail immediately based on an agent predicate, without moving to the 'RUNNING' state.
  */
 export default class Condition extends Leaf {
+    private conditionName: string;
+
     /**
      * @param attributes The node attributes.
      * @param options The behaviour tree options.
-     * @param conditionName The name of the condition function.
+     * @param condition The condition name orfunction.
      * @param conditionArguments The array of condition arguments.
      */
     constructor(
         attributes: Attribute[],
         options: BehaviourTreeOptions,
-        private conditionName: string,
+        private condition: string | Function,
         public conditionArguments: any[]
     ) {
         super("condition", attributes, options);
+        
+        if (typeof condition === "string") {
+            this.conditionName = condition;
+        } else {
+            this.conditionName = condition.name;
+        }
     }
 
     /**
@@ -32,7 +40,7 @@ export default class Condition extends Leaf {
      */
     protected onUpdate(agent: Agent): void {
         // Attempt to get the invoker for the condition function.
-        const conditionFuncInvoker = Lookup.getFuncInvoker(agent, this.conditionName);
+        const conditionFuncInvoker = Lookup.getFuncInvoker(agent, this.condition);
 
         // The condition function should be defined.
         if (conditionFuncInvoker === null) {

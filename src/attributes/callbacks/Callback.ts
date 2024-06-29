@@ -5,8 +5,8 @@ import Attribute, { AttributeDetails } from "../Attribute";
  * Details of a node callback attribute.
  */
 export type CallbackAttributeDetails = {
-    /** The name of the agent function that is called. */
-    calls: string;
+    /** The agent function or name that is called. */
+    calls: string | Function;
 } & AttributeDetails;
 
 /**
@@ -16,16 +16,16 @@ export default abstract class Callback extends Attribute<CallbackAttributeDetail
     /**
      * @param type The node attribute type.
      * @param args The array of decorator argument definitions.
-     * @param functionName The name of the agent function to call.
+     * @param func The the agent function or name to call.
      */
-    constructor(type: string, args: any[], private functionName: string) {
+    constructor(type: string, args: any[], private func: string | Function) {
         super(type, args);
     }
 
     /**
      * Gets the name of the agent function to call.
      */
-    getFunctionName = () => this.functionName;
+    getFunction = () => this.func;
 
     /**
      * Gets the attribute details.
@@ -34,7 +34,7 @@ export default abstract class Callback extends Attribute<CallbackAttributeDetail
         return {
             type: this.type,
             args: this.args,
-            calls: this.getFunctionName()
+            calls: this.getFunction()
         };
     }
 

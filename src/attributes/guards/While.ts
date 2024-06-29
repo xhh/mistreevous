@@ -10,7 +10,7 @@ export default class While extends Guard {
      * @param condition The name of the condition function that determines whether the guard is satisfied.
      * @param args The array of decorator argument definitions.
      */
-    constructor(condition: string, args: any[]) {
+    constructor(condition: string | Function, args: any[]) {
         super("while", args, condition);
     }
 

@@ -6,7 +6,7 @@ import Attribute, { AttributeDetails } from "../Attribute";
  */
 export type GuardAttributeDetails = {
     /** The name of the condition function that determines whether the guard is satisfied. */
-    calls: string;
+    calls: string | Function;
 } & AttributeDetails;
 
 /**
@@ -16,9 +16,9 @@ export default abstract class Guard extends Attribute<GuardAttributeDetails> {
     /**
      * @param type The node attribute type.
      * @param args The array of decorator argument definitions.
-     * @param condition The name of the condition function that determines whether the guard is satisfied.
+     * @param condition The condition function or name that determines whether the guard is satisfied.
      */
-    constructor(type: string, args: any[], private condition: string) {
+    constructor(type: string, args: any[], private condition: string | Function) {
         super(type, args);
     }
 
