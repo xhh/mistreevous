@@ -42,7 +42,7 @@ export default class Lookup {
      * @param nameOrFunc The function name.
      * @returns The function invoker for the specified agent and function name.
      */
-    static getFuncInvoker(agent: Agent, nameOrFunc: string | Function): InvokerFunction | null {
+    static getFuncInvoker(agent: Agent, nameOrFunc: string | ((...args: any[]) => any)): InvokerFunction | null {
         if (typeof nameOrFunc === 'function') {
             return (args: any[]) => nameOrFunc.apply(agent, args);
         }

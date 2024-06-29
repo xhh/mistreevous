@@ -10,7 +10,7 @@ export default class Step extends Callback {
      * @param func The agent function or name to call.
      * @param args The array of callback argument definitions.
      */
-    constructor(func: string | Function, args: any[]) {
+    constructor(func: string | ((...args: any[]) => any), args: any[]) {
         super("step", args, func);
     }
 

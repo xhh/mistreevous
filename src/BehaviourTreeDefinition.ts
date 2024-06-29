@@ -5,7 +5,7 @@ export interface NodeAttributeDefinition {
     /**
      * The name of the agent function or globally registered function to invoke.
      */
-    call: string;
+    call: string | ((...args: any[]) => any);
     /**
      * An array of arguments to pass when invoking the agent function.
      */
@@ -87,7 +87,7 @@ export interface ActionNodeDefinition extends NodeDefinition {
     /**
      * The name of the agent function or globally registered function to invoke.
      */
-    call: string;
+    call: string | ((...args: any[]) => any);
     /**
      * An array of arguments to pass when invoking the action function.
      */
@@ -105,7 +105,7 @@ export interface ConditionNodeDefinition extends NodeDefinition {
     /**
      * The name of the agent function or globally registered function to invoke.
      */
-    call: string;
+    call: string | ((...args: any[]) => any);
     /**
      * An array of arguments to pass when invoking the condition function.
      */

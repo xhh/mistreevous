@@ -325,7 +325,7 @@ function applyLeafNodeGuardPaths(root: Root) {
                     .slice(0, depth + 1)
                     .map<GuardPathPart>((node) => ({
                         node,
-                        guards: node.getAttributes().filter((attribute) => attribute instanceof Guard)
+                        guards: (node.getAttributes().filter((attribute) => attribute instanceof Guard) as Guard[])
                     }))
                     .filter((details) => details.guards.length > 0)
             );

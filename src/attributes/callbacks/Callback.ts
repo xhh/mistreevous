@@ -6,7 +6,7 @@ import Attribute, { AttributeDetails } from "../Attribute";
  */
 export type CallbackAttributeDetails = {
     /** The agent function or name that is called. */
-    calls: string | Function;
+    calls: string | ((...args: any[]) => any);
 } & AttributeDetails;
 
 /**
@@ -18,7 +18,7 @@ export default abstract class Callback extends Attribute<CallbackAttributeDetail
      * @param args The array of decorator argument definitions.
      * @param func The the agent function or name to call.
      */
-    constructor(type: string, args: any[], private func: string | Function) {
+    constructor(type: string, args: any[], private func: string | ((...args: any[]) => any)) {
         super(type, args);
     }
 

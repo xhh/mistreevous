@@ -37,7 +37,7 @@ export default class Action extends Leaf {
     constructor(
         attributes: Attribute[],
         options: BehaviourTreeOptions,
-        private action: string | Function,
+        private action: string | ((...args: any[]) => any),
         public actionArguments: any[]
     ) {
         super("action", attributes, options);

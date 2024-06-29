@@ -22,7 +22,7 @@ export default class Condition extends Leaf {
     constructor(
         attributes: Attribute[],
         options: BehaviourTreeOptions,
-        private condition: string | Function,
+        private condition: string | ((...args: any[]) => boolean),
         public conditionArguments: any[]
     ) {
         super("condition", attributes, options);
