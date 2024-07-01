@@ -128,7 +128,7 @@ export function validateJSONDefinition(
     const subRootNodeDefinitions = rootNodeDefinitions.filter(({ id }) => typeof id === "string" && id.length > 0);
 
     // We should ALWAYS have exactly one root node definition without an 'id' property defined, which is out main root node definition.
-    if (mainRootNodeDefinitions.length !== 1) {
+    if (mainRootNodeDefinitions.length > 1) {
         return createValidationFailureResult(
             "expected single root node without 'id' property defined to act as main root"
         );
