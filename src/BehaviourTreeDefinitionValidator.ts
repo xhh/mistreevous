@@ -330,9 +330,9 @@ function validateNodeAttributes(definition: any, depth: number): void {
         }
 
         // The 'call' property must be defined for any attribute definition.
-        if (typeof attributeDefinition.call !== "string" || attributeDefinition.call.length === 0) {
+        if ((typeof attributeDefinition.call !== "string" || attributeDefinition.call.length === 0) && typeof attributeDefinition.call !== "function") {
             throw new Error(
-                `expected 'call' property for attribute '${attributeName}' to be a non-empty string for '${definition.type}' node at depth '${depth}'`
+                `expected 'call' property for attribute '${attributeName}' to be a non-empty string or function for '${definition.type}' node at depth '${depth}'`
             );
         }
 
@@ -620,8 +620,8 @@ function validateActionNode(definition: any, depth: number): void {
     }
 
     // The 'call' property must be defined for a action node definition.
-    if (typeof definition.call !== "string" || definition.call.length === 0) {
-        throw new Error(`expected non-empty string for 'call' property of action node at depth '${depth}'`);
+    if ((typeof definition.call !== "string" || definition.call.length === 0) && typeof definition.call !== "function") {
+        throw new Error(`expected non-empty string or function for 'call' property of action node at depth '${depth}'`);
     }
 
     // If any action function arguments have been defined then they must have been defined in an array.
@@ -645,8 +645,8 @@ function validateConditionNode(definition: any, depth: number): void {
     }
 
     // The 'call' property must be defined for a condition node definition.
-    if (typeof definition.call !== "string" || definition.call.length === 0) {
-        throw new Error(`expected non-empty string for 'call' property of condition node at depth '${depth}'`);
+    if ((typeof definition.call !== "string" || definition.call.length === 0) && typeof definition.call !== "function") {
+        throw new Error(`expected non-empty string or function for 'call' property of condition node at depth '${depth}'`);
     }
 
     // If any condition function arguments have been defined then they must have been defined in an array.
