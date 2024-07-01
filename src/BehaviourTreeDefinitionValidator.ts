@@ -214,7 +214,8 @@ export function validateBranchSubtreeLinks(rootNodeDefinitions: RootNodeDefiniti
     };
 
     // Start looking for circular dependencies and broken references from the primary root node definition.
-    followRefs(rootNodeMappings.find((mapping) => typeof mapping.id === "undefined")!);
+    const rootNode = rootNodeMappings.find((mapping) => typeof mapping.id === "undefined")
+    if (rootNode) followRefs(rootNode);
 }
 
 /**
