@@ -111,17 +111,17 @@ export function validateJSONDefinition(
     const rootNodeDefinitions = Array.isArray(definition) ? definition : [definition];
 
     // Iterate over our array of root nodes and call validateNode for each, passing an initial depth of 0, wrapped in a try catch to handle validation failures.
-    try {
+    // try {
         rootNodeDefinitions.forEach((rootNodeDefinition) => validateNode(rootNodeDefinition, 0));
-    } catch (error) {
-        // Handle cases where we have caught a thrown Error and return a failure result with the error message.
-        if (error instanceof Error) {
-            return createValidationFailureResult(error.message);
-        }
+    // } catch (error) {
+    //     // Handle cases where we have caught a thrown Error and return a failure result with the error message.
+    //     if (error instanceof Error) {
+    //         return createValidationFailureResult(error.message);
+    //     }
 
-        // No idea what happened here!
-        return createValidationFailureResult(`unexpected error: ${error}`);
-    }
+    //     // No idea what happened here!
+    //     return createValidationFailureResult(`unexpected error: ${error}`);
+    // }
 
     // Unpack all of the root node definitions into arrays of main ('id' defined) and sub ('id' not defined) root node definitions.
     const mainRootNodeDefinitions = rootNodeDefinitions.filter(({ id }) => typeof id === "undefined");
@@ -147,12 +147,12 @@ export function validateJSONDefinition(
         subRootNodeIdenitifers.push(id!);
     }
 
-    try {
+    // try {
         // Validate our branch -> subtree links and check for any circular dependencies, we don't care about checking for broken subtree links here.
         validateBranchSubtreeLinks(rootNodeDefinitions, false);
-    } catch (exception) {
-        return createValidationFailureResult((exception as Error).message);
-    }
+    // } catch (exception) {
+    //     return createValidationFailureResult((exception as Error).message);
+    // }
 
     // Our definition was valid!
     return {

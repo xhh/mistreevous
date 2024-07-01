@@ -144,7 +144,7 @@ export class BehaviourTree {
                 throw new Error("error registering definition: expected a single unnamed root node");
             }
 
-            try {
+            // try {
                 // We should validate the subtree as we don't want invalid subtrees available via the lookup.
                 const { succeeded, errorMessage } = validateJSONDefinition(rootNodeDefinitions[0]);
 
@@ -152,16 +152,16 @@ export class BehaviourTree {
                 if (!succeeded) {
                     throw new Error(errorMessage);
                 }
-            } catch (exception) {
-                throw new Error(`error registering definition: ${(exception as Error).message}`);
-            }
+            // } catch (exception) {
+            //     throw new Error(`error registering definition: ${(exception as Error).message}`);
+            // }
 
             // Everything seems hunky-dory, register the subtree.
             Lookup.setSubtree(name, rootNodeDefinitions[0]);
         } else if (typeof value === "object" && !Array.isArray(value)) {
             // We will assume that any object passed in is a root node definition.
 
-            try {
+            // try {
                 // We should validate the subtree as we don't want invalid subtrees available via the lookup.
                 const { succeeded, errorMessage } = validateJSONDefinition(value);
 
@@ -169,9 +169,9 @@ export class BehaviourTree {
                 if (!succeeded) {
                     throw new Error(errorMessage);
                 }
-            } catch (exception) {
-                throw new Error(`error registering definition: ${(exception as Error).message}`);
-            }
+            // } catch (exception) {
+            //     throw new Error(`error registering definition: ${(exception as Error).message}`);
+            // }
 
             // Everything seems hunky-dory, register the subtree.
             Lookup.setSubtree(name, value);
