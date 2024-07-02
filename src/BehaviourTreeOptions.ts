@@ -10,6 +10,10 @@ export type NodeStateChange = {
      */
     id: string;
     /**
+     * The node name.
+     */
+    name: string;
+    /**
      * The node type.
      */
     type: string;

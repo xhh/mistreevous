@@ -283,6 +283,7 @@ export default abstract class Node {
         // We should call the onNodeStateChange callback if it was defined.
         this.options.onNodeStateChange?.({
             id: this.uid,
+            name: this.getName(),
             type: this.type,
             while: this.attributes.while?.getDetails(),
             until: this.attributes.until?.getDetails(),

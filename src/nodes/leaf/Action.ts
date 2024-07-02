@@ -196,6 +196,7 @@ export default class Action extends Leaf {
     protected onStateChanged(previousState: State): void {
         this.options.onNodeStateChange?.({
             id: this.uid,
+            name: this.getName(),
             type: this.getType(),
             args: this.actionArguments,
             while: this.attributes.while?.getDetails(),

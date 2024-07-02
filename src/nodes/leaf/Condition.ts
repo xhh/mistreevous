@@ -16,7 +16,7 @@ export default class Condition extends Leaf {
     /**
      * @param attributes The node attributes.
      * @param options The behaviour tree options.
-     * @param condition The condition name orfunction.
+     * @param condition The condition name or function.
      * @param conditionArguments The array of condition arguments.
      */
     constructor(
@@ -97,6 +97,7 @@ export default class Condition extends Leaf {
     protected onStateChanged(previousState: State): void {
         this.options.onNodeStateChange?.({
             id: this.uid,
+            name: this.getName(),
             type: this.getType(),
             args: this.conditionArguments,
             while: this.attributes.while?.getDetails(),
