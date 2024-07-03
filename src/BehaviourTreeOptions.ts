@@ -81,7 +81,13 @@ export interface BehaviourTreeOptions {
 
     /**
      * An event handler that is called just before a node does an actual update.
-     * @param change The object representing a change in state for a node in a behaviour tree instance.
+     * @param node 
      */
     onNodeBeforeUpdate?(node: Node): void;
+
+    /**
+     * An event handler that is called just after a node does an actual update.
+     * @param node 
+     */
+    onNodeAfterUpdate?(node: Node): void;
 }

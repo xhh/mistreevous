@@ -265,6 +265,8 @@ export default abstract class Node {
             // Do the actual update.
             this.onUpdate(agent);
 
+            this.onAfterUpdate();
+
             // If this node is now in a 'SUCCEEDED' or 'FAILED' state then call the EXIT for this node if it exists.
             if (this.is(State.SUCCEEDED) || this.is(State.FAILED)) {
                 this.attributes.exit?.callAgentFunction(agent, this.is(State.SUCCEEDED), false);
@@ -326,5 +328,12 @@ export default abstract class Node {
      */
     protected onBeforeUpdate(): void {
         this.options.onNodeBeforeUpdate?.(this);
+    }
+
+    /**
+     * Called before this node does an actual update.
+     */
+    protected onAfterUpdate(): void {
+        this.options.onNodeAfterUpdate?.(this);
     }
 }
