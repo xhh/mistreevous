@@ -175,27 +175,37 @@ export default abstract class Node {
     /**
      * Gets the node attributes.
      */
-    getAttributes = () => Object.values(this.attributes).filter((attribute) => !!attribute);
+    getAttributes(): (While | Until | Entry | Step | Exit)[] {
+        return Object.values(this.attributes).filter((attribute) => !!attribute);
+    }
 
     /**
      * Sets the guard path to evaluate as part of a node update.
      */
-    setGuardPath = (value: GuardPath) => (this._guardPath = value);
+    setGuardPath(value: GuardPath): void {
+        this._guardPath = value;
+    }
 
     /**
      * Gets whether a guard path is assigned to this node.
      */
-    hasGuardPath = () => !!this._guardPath;
+    hasGuardPath(): boolean {
+        return !!this._guardPath;
+    }
 
     /**
      * Gets the depth of the node in the tree.
      */
-    getDepth = () => this.depth;
+    getDepth(): number {
+        return this.depth;
+    }
 
     /**
      * Sets the depths number of the node.
      */
-    setDepth = (value: number) => (this.depth = value);
+    setDepth(value: number): void {
+        this.depth = value;
+    }
 
     /**
      * Gets whether this node is in the specified state.

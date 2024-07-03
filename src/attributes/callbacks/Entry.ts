@@ -18,7 +18,7 @@ export default class Entry extends Callback {
      * Attempt to call the agent function that this callback refers to.
      * @param agent The agent.
      */
-    callAgentFunction = (agent: Agent) => {
+    callAgentFunction(agent: Agent): void {
         // Attempt to get the invoker for the callback function.
         const callbackFuncInvoker = Lookup.getFuncInvoker(agent, this.getFunction());
 
@@ -31,5 +31,5 @@ export default class Entry extends Callback {
 
         // Call the callback function.
         callbackFuncInvoker(this.args);
-    };
+    }
 }

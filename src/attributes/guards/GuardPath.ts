@@ -22,7 +22,7 @@ export default class GuardPath {
      * @param agent The agent, required for guard evaluation.
      * @returns An evaluation results object.
      */
-    evaluate = (agent: Agent) => {
+    evaluate(agent: Agent): void {
         // We need to evaluate guard conditions for nodes up the tree, moving outwards from the root.
         for (const details of this.nodes) {
             // There can be multiple guards per node.
@@ -33,5 +33,5 @@ export default class GuardPath {
                 }
             }
         }
-    };
+    }
 }

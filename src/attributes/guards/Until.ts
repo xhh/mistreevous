@@ -19,7 +19,7 @@ export default class Until extends Guard {
      * @param agent The agent.
      * @returns Whether the guard is satisfied.
      */
-    isSatisfied = (agent: Agent) => {
+    isSatisfied(agent: Agent): boolean {
         // Attempt to get the invoker for the condition function.
         const conditionFuncInvoker = Lookup.getFuncInvoker(agent, this.getCondition());
 
@@ -53,5 +53,5 @@ export default class Until extends Guard {
 
         // Return whether this guard is satisfied.
         return !conditionFunctionResult;
-    };
+    }
 }
