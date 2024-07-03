@@ -103,6 +103,10 @@ export default abstract class Node {
      */
     protected readonly attributes: Attributes;
     /**
+     * The depth of the node in the tree.
+     */
+    protected depth: number = 0;
+    /**
      * The node state.
      */
     private _state: AnyState = State.READY;
@@ -182,6 +186,16 @@ export default abstract class Node {
      * Gets whether a guard path is assigned to this node.
      */
     hasGuardPath = () => !!this._guardPath;
+
+    /**
+     * Gets the depth of the node in the tree.
+     */
+    getDepth = () => this.depth;
+
+    /**
+     * Sets the depths number of the node.
+     */
+    setDepth = (value: number) => (this.depth = value);
 
     /**
      * Gets whether this node is in the specified state.
@@ -293,5 +307,12 @@ export default abstract class Node {
             previousState,
             state: this._state
         });
+    }
+
+    /**
+     * Called before this node does an actual update.
+     */
+    protected onBeforeUpdate(): void {
+        this.options.onNodeBeforeUpdate?.(this)
     }
 }

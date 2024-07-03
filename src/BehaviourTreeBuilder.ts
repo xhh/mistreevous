@@ -332,6 +332,8 @@ function applyLeafNodeGuardPaths(root: Root) {
 
             // Assign the guard path to the current node.
             currentNode.setGuardPath(guardPath);
+
+            currentNode.setDepth(depth);
         }
     });
 }

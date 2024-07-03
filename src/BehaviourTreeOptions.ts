@@ -1,5 +1,6 @@
 import { State } from "./State";
 import { AttributeDetails } from "./attributes/Attribute";
+import Node from "./nodes/Node";
 
 /**
  * An object representing a change in state for a node in a behaviour tree instance.
@@ -77,4 +78,10 @@ export interface BehaviourTreeOptions {
      * @param change The object representing a change in state for a node in a behaviour tree instance.
      */
     onNodeStateChange?(change: NodeStateChange): void;
+
+    /**
+     * An event handler that is called just before a node does an actual update.
+     * @param change The object representing a change in state for a node in a behaviour tree instance.
+     */
+    onNodeBeforeUpdate?(node: Node): void;
 }

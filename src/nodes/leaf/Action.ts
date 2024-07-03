@@ -104,20 +104,20 @@ export default class Action extends Leaf {
 
         let actionFunctionResult;
 
-        try {
+        // try {
             // Call the action function, the result of which may be:
             // - The finished state of this action node.
             // - A promise to return a finished node state.
             // - Undefined if the node should remain in the running state.
             actionFunctionResult = actionFuncInvoker(this.actionArguments) as CompleteState | Promise<CompleteState>;
-        } catch (error) {
-            // An uncaught error was thrown.
-            if (error instanceof Error) {
-                throw new Error(`action function '${this.actionName}' threw: ${error.stack}`);
-            } else {
-                throw new Error(`action function '${this.actionName}' threw: ${error}`);
-            }
-        }
+        // } catch (error) {
+        //     // An uncaught error was thrown.
+        //     if (error instanceof Error) {
+        //         throw new Error(`action function '${this.actionName}' threw: ${error.stack}`);
+        //     } else {
+        //         throw new Error(`action function '${this.actionName}' threw: ${error}`);
+        //     }
+        // }
 
         if (actionFunctionResult instanceof Promise) {
             actionFunctionResult.then(

@@ -72,6 +72,8 @@ export default class Wait extends Leaf {
 
             // The node is now running until we finish waiting.
             this.setState(State.RUNNING);
+            // NOTE: return to make sure wait for at least one step.
+            return;
         }
 
         // If we have no total duration then this wait node will wait indefinitely until it is aborted.

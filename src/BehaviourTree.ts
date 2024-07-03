@@ -55,13 +55,13 @@ export class BehaviourTree {
             );
         }
 
-        try {
+        // try {
             // Create the populated tree of behaviour tree nodes and get the root node.
             this._rootNode = buildRootNode(json, options);
-        } catch (exception) {
-            // There was an issue in trying build and populate the behaviour tree.
-            throw new Error(`error building tree: ${(exception as Error).message}`);
-        }
+        // } catch (exception) {
+        //     // There was an issue in trying build and populate the behaviour tree.
+        //     throw new Error(`error building tree: ${(exception as Error).message}`);
+        // }
     }
 
     /**
@@ -94,11 +94,11 @@ export class BehaviourTree {
             this._rootNode.reset();
         }
 
-        try {
+        // try {
             this._rootNode.update(this.agent);
-        } catch (exception) {
-            throw new Error(`error stepping tree: ${(exception as Error).message}`);
-        }
+        // } catch (exception) {
+        //     throw new Error(`error stepping tree: ${(exception as Error).message}`);
+        // }
     }
 
     /**
