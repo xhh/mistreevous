@@ -260,6 +260,8 @@ export default abstract class Node {
 
             this.attributes.step?.callAgentFunction(agent);
 
+            this.onBeforeUpdate();
+
             // Do the actual update.
             this.onUpdate(agent);
 
@@ -323,6 +325,6 @@ export default abstract class Node {
      * Called before this node does an actual update.
      */
     protected onBeforeUpdate(): void {
-        this.options.onNodeBeforeUpdate?.(this)
+        this.options.onNodeBeforeUpdate?.(this);
     }
 }
