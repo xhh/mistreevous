@@ -1,5 +1,5 @@
 {
   "name": "@cooky/mistreevous",
-  "version": "1.0.9",
+  "version": "1.1.0",
   "exports": "./src/index.ts"
 }

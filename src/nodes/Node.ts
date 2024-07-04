@@ -3,6 +3,7 @@ import State, { AnyState } from "../State";
 import { Agent } from "../Agent";
 import Leaf from "./leaf/Leaf";
 import Attribute from "../attributes/Attribute";
+import Tip from "../attributes/Tip";
 import Entry from "../attributes/callbacks/Entry";
 import Exit from "../attributes/callbacks/Exit";
 import Step from "../attributes/callbacks/Step";
@@ -69,6 +70,10 @@ export type NodeDetails = {
  */
 type Attributes = {
     /**
+     * The 'tip' attribute configured for this node.
+     */
+    tip?: Tip;
+    /**
      * The 'entry' callback attribute configured for this node.
      */
     entry?: Entry;
@@ -126,6 +131,7 @@ export default abstract class Node {
 
         // Create our attribute mapping.
         this.attributes = {
+            tip: attributes.find(({ type }) => type === "tip") as Tip,
             entry: attributes.find(({ type }) => type === "entry") as Entry,
             step: attributes.find(({ type }) => type === "step") as Step,
             exit: attributes.find(({ type }) => type === "exit") as Exit,
@@ -175,7 +181,7 @@ export default abstract class Node {
     /**
      * Gets the node attributes.
      */
-    getAttributes(): (While | Until | Entry | Step | Exit)[] {
+    getAttributes(): (Tip | While | Until | Entry | Step | Exit)[] {
         return Object.values(this.attributes).filter((attribute) => !!attribute);
     }
 

@@ -21,6 +21,10 @@ export interface NodeDefinition {
      */
     type: string;
     /**
+     * The tip/description of the node.
+     */
+    tip?: string;
+    /**
      * The 'while' node attribute definition.
      */
     while?: NodeAttributeDefinition;

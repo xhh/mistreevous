@@ -24,6 +24,7 @@ import Wait from "./nodes/leaf/Wait";
 import Lookup from "./Lookup";
 import Attribute from "./attributes/Attribute";
 import Guard from "./attributes/guards/Guard";
+import Tip from "./attributes/Tip";
 import While from "./attributes/guards/While";
 import Until from "./attributes/guards/Until";
 import Entry from "./attributes/callbacks/Entry";
@@ -238,6 +239,10 @@ function nodeFactory(
  */
 function nodeAttributesFactory(definition: AnyNodeDefinition): Attribute[] {
     const attributes: Attribute[] = [];
+
+    if (definition.tip) {
+        attributes.push(new Tip(definition.tip));
+    }
 
     if (definition.while) {
         attributes.push(new While(definition.while.call, definition.while.args ?? []));
