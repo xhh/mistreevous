@@ -1,4 +1,4 @@
-import createLotto from "npm:lotto-draw";
+import createLotto from "npm:lotto-draw@^1.0.2";
 
 import Node from "../Node";
 import Composite from "./Composite";
