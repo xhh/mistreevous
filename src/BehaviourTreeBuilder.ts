@@ -327,7 +327,7 @@ function applyLeafNodeGuardPaths(root: Root) {
             // Create the guard path for the current node.
             const guardPath = new GuardPath(
                 path
-                    .slice(0, depth + 1)
+                    .slice(depth, depth + 1) // NOTE: Changed from slice(0, 1) to slice(depth, depth + 1) to include only the current node in the guard path.
                     .map<GuardPathPart>((node) => ({
                         node,
                         guards: (node.getAttributes().filter((attribute) => attribute instanceof Guard) as Guard[])
